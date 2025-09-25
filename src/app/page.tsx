@@ -1,103 +1,148 @@
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import Image from "next/image";
+import React from "react";
 
-export default function Home() {
+const HomePage = () => {
+  const destinations = [
+    { title: "Everest Base Camp", img: "/images/everest.webp" },
+    { title: "Annapurna Circuit", img: "/images/annapurna.webp" },
+    { title: "Langtang Valley", img: "/images/langtang.webp" },
+    { title: "Manaslu Trek", img: "/images/manaslu.webp" },
+    { title: "Upper Mustang", img: "/images/mustang.webp" },
+  ];
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="py-20 font-sans text-gray-800">
+      {/* Hero Section */}
+      <div
+        className="relative h-[80vh] flex items-center justify-center text-center text-white"
+        style={{
+          backgroundImage: "url('/images/hero-trekking.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="absolute inset-0 bg-teal-800 bg-opacity-50"></div>
+        <div className="relative z-10 max-w-2xl px-4">
+          <h1 className="text-5xl font-bold mb-4">
+            Explore the Majestic Himalayas
+          </h1>
+          <p className="text-lg mb-6">
+            Your adventure starts here — unforgettable treks, breathtaking
+            views, and lifelong memories.
+          </p>
+          <button className="bg-teal-600 hover:bg-teal-700 text-white cursor-pointer px-6 py-3 rounded-lg font-semibold shadow-lg transition">
+            Start Your Journey
+          </button>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
+
+      {/* Destinations Carousel */}
+      <div className="py-16 px-6 max-w-6xl mx-auto">
+        <h2 className="text-3xl font-bold text-center mb-10 text-teal-600">
+          Popular Treks & Destinations
+        </h2>
+        <Carousel className="w-full">
+          <CarouselContent>
+            {destinations.map((place, index) => (
+              <CarouselItem key={index} className="md:basis-1/3 lg:basis-1/4">
+                <Card className="overflow-hidden rounded-2xl shadow-lg hover:scale-105 transition">
+                  <Image
+                    src={place.img}
+                    alt={place.title}
+                    width={400}
+                    height={250}
+                    className="object-cover w-full h-56"
+                  />
+                  <CardContent className="p-4 text-center">
+                    <h3 className="text-lg font-semibold">{place.title}</h3>
+                  </CardContent>
+                </Card>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
+      </div>
+
+      {/* Why Choose Us */}
+      <div className="bg-gray-50 py-16 px-6">
+        <h2 className="text-3xl font-bold text-center mb-10 text-teal-600">
+          Why Travel With Us?
+        </h2>
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {[
+            {
+              title: "Expert Local Guides",
+              desc: "Experienced guides who know every trail and hidden gem.",
+            },
+            {
+              title: "Custom Itineraries",
+              desc: "Personalized adventures tailored to your preferences.",
+            },
+            {
+              title: "Eco-Friendly Travel",
+              desc: "Sustainable tourism that supports local communities.",
+            },
+          ].map((feature, index) => (
+            <Card
+              key={index}
+              className="p-6 rounded-2xl shadow-md hover:shadow-xl transition"
+            >
+              <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
+              <p className="text-gray-600">{feature.desc}</p>
+            </Card>
+          ))}
+        </div>
+      </div>
+
+      {/* Testimonials */}
+      <div className="py-16 px-6 max-w-6xl mx-auto">
+        <h2 className="text-3xl font-bold text-center mb-10 text-teal-600">
+          What Our Travelers Say
+        </h2>
+        <div className="grid md:grid-cols-3 gap-8">
+          {[
+            {
+              name: "John D.",
+              text: "The Everest trek was life-changing! Highly recommend Adventure Trails.",
+            },
+            {
+              name: "Sarah M.",
+              text: "Professional guides and stunning routes. I’ll be back for another trek!",
+            },
+            {
+              name: "Alex K.",
+              text: "Best travel experience ever — everything was perfectly organized.",
+            },
+          ].map((review, index) => (
+            <Card key={index} className="p-6 rounded-2xl shadow-lg bg-white">
+              <p className="italic mb-4">"{review.text}"</p>
+              <p className="font-semibold text-teal-600">— {review.name}</p>
+            </Card>
+          ))}
+        </div>
+      </div>
+
+      {/* Call to Action */}
+      <div className="bg-teal-600 py-12 text-center text-white">
+        <h2 className="text-3xl font-bold mb-4">
+          Ready to Begin Your Adventure?
+        </h2>
+        <button className="bg-white text-teal-600 px-6 py-3 rounded-lg font-semibold shadow-lg hover:bg-gray-100 transition">
+          Contact Us Today
+        </button>
+      </div>
     </div>
   );
-}
+};
+
+export default HomePage;
