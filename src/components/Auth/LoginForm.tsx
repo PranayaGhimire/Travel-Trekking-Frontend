@@ -4,10 +4,20 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useForm } from "react-hook-form";
 import { Button } from "../ui/button";
+import { useLogin } from "@/api/authApi";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 const LoginForm = () => {
+  const router = useRouter();
+  const {mutate} = useLogin();
   const {register,handleSubmit} = useForm();
   const onSubmit = (data:any) => {
-    console.log(data);
+      mutate(data,{
+        onSuccess: () =>{ 
+          toast.success("User logged in successfully");
+          router.push("/");
+        }
+      });
   }
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

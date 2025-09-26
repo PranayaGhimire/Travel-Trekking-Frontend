@@ -16,8 +16,8 @@ import React from "react";
 const RegisterPage = () => {
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <Card className="bg-white w-full max-w-sm border-0 shadow-lg">
+    <div className="flex justify-center items-center py-40">
+      <Card className="bg-white w-[95%] md:w-full max-w-sm border-0 shadow-lg">
         <CardHeader>
           <CardTitle className="text-xl text-teal-700">Register your account</CardTitle>
           <CardDescription className="text-teal-700">

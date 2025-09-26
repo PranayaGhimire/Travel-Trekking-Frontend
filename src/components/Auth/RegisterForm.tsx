@@ -4,18 +4,28 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {useForm} from "react-hook-form";
 import { Button } from "../ui/button";
+import { useRegister } from "@/api/authApi";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const RegisterForm = () => {
+  const router = useRouter();
+  const {mutate} = useRegister();
   const { register, handleSubmit } = useForm();
   const onSubmit = (data:any) => {
-    console.log(data);
+    mutate(data,{
+      onSuccess: () => {
+        toast.success("User registered successfully");
+        router.push("/auth/login")
+      }
+    })
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="flex flex-col gap-6">
         <div className="grid gap-2">
           <Label htmlFor="username" className="text-teal-700">Username</Label>
-          <Input {...register("name")} placeholder="john" required />
+          <Input {...register("username")} placeholder="john" required />
         </div>
         <div className="grid gap-2">
           <Label htmlFor="email" className="text-teal-700">Email</Label>
