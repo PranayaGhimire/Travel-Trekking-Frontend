@@ -53,7 +53,7 @@ const HomePage = () => {
           <CarouselContent>
             {destinations.map((place, index) => (
               <CarouselItem key={index} className="md:basis-1/3 lg:basis-1/4">
-                <Card className="overflow-hidden rounded-2xl shadow-lg hover:scale-105 transition">
+                <Card className="bg-white overflow-hidden rounded-2xl shadow-lg hover:scale-105 transition border-0">
                   <Image
                     src={place.img}
                     alt={place.title}
@@ -74,7 +74,7 @@ const HomePage = () => {
       </div>
 
       {/* Why Choose Us */}
-      <div className="bg-gray-50 py-16 px-6">
+      <div className=" py-16 px-6">
         <h2 className="text-3xl font-bold text-center mb-10 text-teal-600">
           Why Travel With Us?
         </h2>
@@ -95,7 +95,7 @@ const HomePage = () => {
           ].map((feature, index) => (
             <Card
               key={index}
-              className="p-6 rounded-2xl shadow-md hover:shadow-xl transition"
+              className="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition border-0"
             >
               <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
               <p className="text-gray-600">{feature.desc}</p>
@@ -124,7 +124,7 @@ const HomePage = () => {
               text: "Best travel experience ever — everything was perfectly organized.",
             },
           ].map((review, index) => (
-            <Card key={index} className="p-6 rounded-2xl shadow-lg bg-white">
+            <Card key={index} className="p-6 rounded-2xl shadow-lg hover:shadow-2xl bg-white border-0">
               <p className="italic mb-4">"{review.text}"</p>
               <p className="font-semibold text-teal-600">— {review.name}</p>
             </Card>

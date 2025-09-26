@@ -1,11 +1,61 @@
-import React from 'react'
+'use client'
+import React from "react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {useForm} from "react-hook-form";
+import { Button } from "../ui/button";
 
 const RegisterForm = () => {
+  const { register, handleSubmit } = useForm();
+  const onSubmit = (data:any) => {
+    console.log(data);
+  };
   return (
-    <div>
-      
-    </div>
-  )
-}
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <div className="flex flex-col gap-6">
+        <div className="grid gap-2">
+          <Label htmlFor="username" className="text-teal-700">Username</Label>
+          <Input {...register("name")} placeholder="john" required />
+        </div>
+        <div className="grid gap-2">
+          <Label htmlFor="email" className="text-teal-700">Email</Label>
+          <Input
+            {...register("email")}
+            id="email"
+            type="email"
+            placeholder="john@example.com"
+            required
+          />
+        </div>
+        <div className="grid gap-2">
+          <Label htmlFor="password" className="text-teal-700">Password</Label>
+          <Input
+            {...register("password")}
+            id="password"
+            type="password"
+            placeholder="Enter password"
+            required
+          />
+        </div>
+        <div className="grid gap-2">
+          <Label htmlFor="role" className="text-teal-700">Role</Label>
+          <select
+            {...register("role")}
+            className="border border-gray-300 p-1.5 rounded-lg outline-0 focus:ring-2 focus:ring-teal-500"
+          >
+            <option value="admin">Admin</option>
+            <option value="user">User</option>
+          </select>
+        </div>
+         <Button
+            type="submit"
+            className="w-full bg-teal-500 hover:bg-teal-600 text-white cursor-pointer "
+          >
+            Register
+          </Button>
+      </div>
+    </form>
+  );
+};
 
-export default RegisterForm
+export default RegisterForm;

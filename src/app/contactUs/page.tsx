@@ -51,7 +51,7 @@ const ContactUsPage = () => {
         </div>
 
         {/* Contact Form */}
-        <div className="bg-gray-50 p-6 rounded-2xl shadow-lg">
+        <div className="bg-gray-100 p-6 rounded-2xl shadow-lg">
           <h2 className="text-2xl font-bold mb-4 text-teal-700">Send us a Message</h2>
           <form className="space-y-4">
             <input
