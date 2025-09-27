@@ -7,10 +7,11 @@ import { Button } from "../ui/button";
 import { useRegister } from "@/api/authApi";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { ClipLoader } from "react-spinners";
 
 const RegisterForm = () => {
   const router = useRouter();
-  const {mutate} = useRegister();
+  const {mutate,isPending} = useRegister();
   const { register, handleSubmit } = useForm();
   const onSubmit = (data:any) => {
     mutate(data,{
@@ -57,11 +58,11 @@ const RegisterForm = () => {
             <option value="user">User</option>
           </select>
         </div>
-         <Button
+         <Button disabled={isPending}
             type="submit"
             className="w-full bg-teal-500 hover:bg-teal-600 text-white cursor-pointer "
           >
-            Register
+            {isPending ? <ClipLoader size={20} color="white"/> :'Register'}
           </Button>
       </div>
     </form>

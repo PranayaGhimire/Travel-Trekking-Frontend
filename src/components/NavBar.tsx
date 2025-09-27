@@ -4,8 +4,11 @@ import React, { useState } from "react";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { HiMenu, HiX } from "react-icons/hi";
+import Cookies from "js-cookie";
+import toast from "react-hot-toast";
 
 const NavBar = () => {
+  const token = Cookies.get("token");
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
@@ -16,6 +19,10 @@ const NavBar = () => {
     { name: "Contact Us", href: "/contactUs" },
   ];
 
+  const handleLogout = () => {
+    Cookies.remove("token");
+    toast.success("User logged out successfully");
+  }
   return (
     <nav className="w-full fixed top-0 left-0 z-50 bg-gradient-to-bl from-teal-500 to-teal-600 shadow-lg">
       <div className="max-w-6xl mx-auto px-6 flex justify-between items-center h-20">
@@ -35,9 +42,14 @@ const NavBar = () => {
 
         {/* Login Button */}
         <div className="hidden md:block">
-          <Button className="bg-white text-teal-600 font-semibold hover:bg-gray-100 transition">
-            <Link href="/auth/login">Login</Link>
+         {token ?
+          <Button onClick={handleLogout} 
+          className="bg-red-600 hover:bg-red-700 cursor-pointer">
+              Logout
           </Button>
+          : <Button className="bg-white text-teal-600 font-semibold hover:bg-gray-100 transition">
+            <Link href="/auth/login">Login</Link>
+          </Button>}
         </div>
 
         {/* Mobile Menu Button */}

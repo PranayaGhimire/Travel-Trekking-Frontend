@@ -7,14 +7,18 @@ import { Button } from "../ui/button";
 import { useLogin } from "@/api/authApi";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
+import {ClipLoader} from "react-spinners"
+
 const LoginForm = () => {
   const router = useRouter();
-  const {mutate} = useLogin();
+  const {mutate,isPending} = useLogin();
   const {register,handleSubmit} = useForm();
   const onSubmit = (data:any) => {
       mutate(data,{
-        onSuccess: () =>{ 
+        onSuccess: (response) =>{ 
           toast.success("User logged in successfully");
+          Cookies.set("token",response.token);
           router.push("/");
         }
       });
@@ -44,8 +48,10 @@ const LoginForm = () => {
             required
           />
         </div>
-         <Button type="submit" className="w-full bg-teal-500 hover:bg-teal-600 text-white cursor-pointer ">
-            Login
+         <Button disabled={isPending} type="submit" className="w-full bg-teal-500 hover:bg-teal-600 text-white cursor-pointer ">
+            {isPending ?
+              <ClipLoader size={20} color="white"/>
+               : "Login"}
           </Button>
       </div>
     </form>
