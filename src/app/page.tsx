@@ -7,6 +7,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const HomePage = () => {
@@ -138,7 +139,7 @@ const HomePage = () => {
           Ready to Begin Your Adventure?
         </h2>
         <button className="bg-white text-teal-600 px-6 py-3 rounded-lg font-semibold shadow-lg hover:bg-gray-100 transition">
-          Contact Us Today
+          <Link href="/contactUs">Contact Us Today</Link>
         </button>
       </div>
     </div>

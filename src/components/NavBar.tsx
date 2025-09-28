@@ -1,16 +1,16 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { HiMenu, HiX } from "react-icons/hi";
 import Cookies from "js-cookie";
 import toast from "react-hot-toast";
+import { useAuth } from "@/context/AuthProvider";
 
 const NavBar = () => {
-  const token = Cookies.get("token");
+  const {token,setToken,user,setUser} = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
-
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
   const navLinks = [
@@ -21,8 +21,12 @@ const NavBar = () => {
 
   const handleLogout = () => {
     Cookies.remove("token");
+    setToken(null);
+    localStorage.removeItem("user");
+    setUser(null);
     toast.success("User logged out successfully");
   }
+
   return (
     <nav className="w-full fixed top-0 left-0 z-50 bg-gradient-to-bl from-teal-500 to-teal-600 shadow-lg">
       <div className="max-w-6xl mx-auto px-6 flex justify-between items-center h-20">
@@ -39,10 +43,10 @@ const NavBar = () => {
             </li>
           ))}
         </ul>
-
+        {user && <p className="text-white">Hello, {user?.username}</p>}
         {/* Login Button */}
         <div className="hidden md:block">
-         {token ?
+         { token ?
           <Button onClick={handleLogout} 
           className="bg-red-600 hover:bg-red-700 cursor-pointer">
               Logout

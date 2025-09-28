@@ -9,18 +9,25 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import {ClipLoader} from "react-spinners"
+import { useAuth } from "@/context/AuthProvider";
 
 const LoginForm = () => {
+  const {setToken,setUser} = useAuth();
   const router = useRouter();
   const {mutate,isPending} = useLogin();
   const {register,handleSubmit} = useForm();
   const onSubmit = (data:any) => {
       mutate(data,{
         onSuccess: (response) =>{ 
-          toast.success("User logged in successfully");
-          Cookies.set("token",response.token);
+          console.log(response);
+          toast.success(response.message);
+          Cookies.set("token",response.accessToken);
+          setToken(response.accessToken);
+          localStorage.setItem("user",JSON.stringify(response.data));
+          setUser(response.data);
           router.push("/");
-        }
+        },
+        onError: (response) => toast.error(response.message)
       });
   }
   return (
