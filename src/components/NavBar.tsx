@@ -116,7 +116,7 @@ const NavBar = () => {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden px-6 pb-6 transition-all duration-300 bg-gray-100">
+        <div className="md:hidden px-6 py-6 transition-all duration-300 bg-gray-100">
           <ul className="flex flex-col gap-4 font-semibold">
             {navLinks.map((link, index) => (
               <li key={index} className={`${path === link.href && "text-yellow-500"} transition`}>
@@ -153,7 +153,7 @@ const NavBar = () => {
                     </AlertDialogFooter>
                   </AlertDialogContent>
                 </AlertDialog>
-              : <Button className="w-full bg-white text-teal-600 font-semibold hover:bg-gray-100 transition cursor-pointer">
+              : <Button className="w-full bg-teal-600  font-semibold hover:bg-teal-700 transition cursor-pointer">
                 <Link href="/auth/login">Login</Link>
               </Button>}
             </li>

@@ -1,3 +1,9 @@
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import React from "react";
 import { FaLocationDot, FaPhone } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
@@ -37,22 +43,31 @@ const ContactUsPage = () => {
 
           <div className="space-y-4">
             <p className="flex gap-2">
-              <span className="flex gap-2 items-center font-semibold"><FaLocationDot className="text-teal-600" /> Address:</span> Bharatpur-26,
-              Chitwan, Nepal
+              <span className="flex gap-2 items-center font-semibold">
+                <FaLocationDot className="text-teal-600" /> Address:
+              </span>{" "}
+              Bharatpur-26, Chitwan, Nepal
             </p>
             <p className="flex gap-2">
-              <span className="flex gap-2 items-center font-semibold"><FaPhone  className="text-teal-600"/> Phone:</span> +977-9840505684
+              <span className="flex gap-2 items-center font-semibold">
+                <FaPhone className="text-teal-600" /> Phone:
+              </span>{" "}
+              +977-9840505684
             </p>
             <p className="flex gap-2">
-              <span className="flex gap-2 items-center font-semibold"><MdEmail className="text-teal-600"/> Email:</span>{" "}
-                pranayaghimire88083@gmail.com
+              <span className="flex gap-2 items-center font-semibold">
+                <MdEmail className="text-teal-600" /> Email:
+              </span>{" "}
+              pranayaghimire88083@gmail.com
             </p>
           </div>
         </div>
 
         {/* Contact Form */}
         <div className="bg-gray-100 p-6 rounded-2xl shadow-lg">
-          <h2 className="text-2xl font-bold mb-4 text-teal-700">Send us a Message</h2>
+          <h2 className="text-2xl font-bold mb-4 text-teal-700">
+            Send us a Message
+          </h2>
           <form className="space-y-4">
             <input
               type="text"
@@ -87,8 +102,68 @@ const ContactUsPage = () => {
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14140.880058681381!2d84.25297018715818!3d27.617701800000013!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3994f7ffa328e6cb%3A0x2bf4791979cfe32d!2sJyotinagar%20Bus%20Stop!5e0!3m2!1sen!2snp!4v1755163010711!5m2!1sen!2snp"
           loading="lazy"
-          className= "w-full h-120"
+          className="w-full h-120"
         ></iframe>
+      </div>
+      {/* FAQ Section */}
+      <div className="max-w-6xl mx-auto px-6 pb-12">
+        <h2 className="text-2xl font-bold mb-4 text-teal-600">FAQ</h2>
+        <Accordion
+          type="single"
+          collapsible
+          className="w-full bg-white p-3 rounded-lg"
+          defaultValue="item-1"
+        >
+          <AccordionItem value="item-1">
+            <AccordionTrigger >
+              What makes your company different from other travel agencies?
+            </AccordionTrigger>
+            <AccordionContent className="text-balance ">
+              <p>
+                We specialize exclusively in adventure travel and trekking. Our
+                guides are certified experts in their regions, our itineraries
+                are designed for immersive experiences, and we maintain a strong
+                commitment to sustainable and responsible tourism. We don't just
+                sell trips; we create unforgettable adventures.
+              </p>
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-2">
+            <AccordionTrigger>
+              How far in advance should I book my trek or tour?
+            </AccordionTrigger>
+            <AccordionContent className="text-balance">
+              We recommend booking at least 3-6 months in advance, especially
+              for popular destinations and peak seasons (like spring and autumn
+              for the Himalayas). This ensures availability for permits,
+              flights, and the best guides. Last-minute bookings are sometimes
+              possible, so please contact us.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-3">
+            <AccordionTrigger>
+              Who will be guiding us on the trek?
+            </AccordionTrigger>
+            <AccordionContent className="text-balance">
+              You will be led by our experienced, local, and certified guides
+              who are fluent in English and have extensive knowledge of the
+              terrain, culture, and first aid. They are passionate about sharing
+              their homeland with you.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-4">
+            <AccordionTrigger>
+              What are the accommodation and food like?
+            </AccordionTrigger>
+            <AccordionContent className="text-balance">
+              This depends on the trek. On camping treks, we provide
+              high-quality tents and a dedicated kitchen crew who prepare
+              nutritious and hearty meals. On teahouse/lodge treks, you'll stay
+              in family-run lodges with basic, shared facilities and eat meals
+              from their menus.
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
       </div>
     </div>
   );
