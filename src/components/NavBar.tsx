@@ -10,6 +10,7 @@ import { useAuth } from "@/context/AuthProvider";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "./ui/alert-dialog";
 import { usePathname } from "next/navigation";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu";
+import Image from "next/image";
 
 const NavBar = () => {
   const path = usePathname();
@@ -36,22 +37,23 @@ const NavBar = () => {
   }
 
   return (
-    <nav className="w-full fixed top-0 left-0 z-50 bg-gradient-to-bl from-teal-500 to-teal-600 shadow-lg">
+    <nav className="bg-gray-200 w-full fixed  left-0 z-50  shadow-lg">
       <div className="max-w-6xl mx-auto px-6 flex justify-between items-center h-20">
         {/* Logo */}
-        <div className="text-white text-2xl font-bold cursor-pointer">
+        {/* <div className=" text-2xl font-bold cursor-pointer">
           Adventure Trails
-        </div>
+        </div> */}
+        <Image src={"/images/logo.png"} alt="" width={80} height={80}/>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex gap-8 font-semibold text-white">
+        <ul className="hidden md:flex gap-8 font-semibold">
           {navLinks.map((link, index) => (
-            <li key={index} className={`${path === link.href && "text-yellow-300"} hover:text-yellow-300 transition`}>
+            <li key={index} className={`${path === link.href && "text-teal-600"} hover:text-teal-500 transition`}>
               <Link href={link.href}>{link.name}</Link>
             </li>
           ))}
         </ul>
-        {user && <p className="text-white">Hello, {user?.username}</p>}
+        {user && <p className="">Hello, {user?.username}</p>}
         {/* Login Button */}
         <div className="hidden md:block">
          { token ?
@@ -93,14 +95,14 @@ const NavBar = () => {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-          : <Button className="bg-white text-teal-600 font-semibold hover:bg-gray-100 transition">
+          : <Button className=" bg-teal-600 font-semibold hover:bg-teal-700 transition">
             <Link href="/auth/login">Login</Link>
           </Button>}
         </div>
 
         {/* Mobile Menu Button */}
         <div
-          className="md:hidden text-white text-3xl cursor-pointer"
+          className="md:hidden  text-3xl cursor-pointer"
           onClick={toggleMenu}
         >
           {menuOpen ? <HiX /> : <HiMenu />}
@@ -109,10 +111,10 @@ const NavBar = () => {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden bg-teal-500 text-white px-6 pb-6 transition-all duration-300">
+        <div className="md:hidden px-6 pb-6 transition-all duration-300 bg-gray-100">
           <ul className="flex flex-col gap-4 font-semibold">
             {navLinks.map((link, index) => (
-              <li key={index} className={`${path === link.href && "text-yellow-300"} transition`}>
+              <li key={index} className={`${path === link.href && "text-yellow-500"} transition`}>
                 <Link href={link.href} onClick={() => setMenuOpen(false)}>
                   {link.name}
                 </Link>
