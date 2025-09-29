@@ -1,3 +1,4 @@
+'use client'
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
@@ -9,6 +10,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import Autoplay from "embla-carousel-autoplay"
 
 const HomePage = () => {
   const destinations = [
@@ -50,7 +52,11 @@ const HomePage = () => {
         <h2 className="text-3xl font-bold text-center mb-10 text-teal-600">
           Popular Treks & Destinations
         </h2>
-        <Carousel className="w-full">
+        <Carousel plugins={[
+          Autoplay({
+            delay:2000
+          })
+        ]} className="">
           <CarouselContent>
             {destinations.map((place, index) => (
               <CarouselItem key={index} className="md:basis-1/3 lg:basis-1/4">

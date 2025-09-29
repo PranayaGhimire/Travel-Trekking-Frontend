@@ -45,11 +45,7 @@ const NavBar = () => {
          <nav className="bg-gray-200   shadow-lg">
       <div className="max-w-6xl mx-auto px-6 flex justify-between items-center h-20">
         {/* Logo */}
-        {/* <div className=" text-2xl font-bold cursor-pointer">
-          Adventure Trails
-        </div> */}
         <Image src={"/images/logo.png"} alt="" width={80} height={80}/>
-
         {/* Desktop Menu */}
         <ul className="hidden md:flex gap-8 font-semibold">
           {navLinks.map((link, index) => (
@@ -119,7 +115,7 @@ const NavBar = () => {
         <div className="md:hidden px-6 py-6 transition-all duration-300 bg-gray-100">
           <ul className="flex flex-col gap-4 font-semibold">
             {navLinks.map((link, index) => (
-              <li key={index} className={`${path === link.href && "text-yellow-500"} transition`}>
+              <li key={index} className={`${path === link.href && "text-teal-500"} transition`}>
                 <Link href={link.href} onClick={() => setMenuOpen(false)}>
                   {link.name}
                 </Link>
