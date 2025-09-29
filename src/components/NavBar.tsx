@@ -1,15 +1,23 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { HiMenu, HiX } from "react-icons/hi";
 import Cookies from "js-cookie";
 import toast from "react-hot-toast";
 import { useAuth } from "@/context/AuthProvider";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "./ui/alert-dialog";
+import { usePathname } from "next/navigation";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu";
 
 const NavBar = () => {
+  const path = usePathname();
+  
   const {token,setToken,user,setUser} = useAuth();
+  const shortEmail = user?.email.slice(0,2).toUpperCase();
+  console.log(shortEmail);
+  
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
@@ -38,7 +46,7 @@ const NavBar = () => {
         {/* Desktop Menu */}
         <ul className="hidden md:flex gap-8 font-semibold text-white">
           {navLinks.map((link, index) => (
-            <li key={index} className="hover:text-yellow-300 transition">
+            <li key={index} className={`${path === link.href && "text-yellow-300"} hover:text-yellow-300 transition`}>
               <Link href={link.href}>{link.name}</Link>
             </li>
           ))}
@@ -47,10 +55,44 @@ const NavBar = () => {
         {/* Login Button */}
         <div className="hidden md:block">
          { token ?
-          <Button onClick={handleLogout} 
-          className="bg-red-600 hover:bg-red-700 cursor-pointer">
-              Logout
-          </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+                <Button className="bg-teal-800 hover:bg-teal-900">{shortEmail}</Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>{user?.email}</DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                  <AlertDialog>
+                    <AlertDialogTrigger asChild>
+                      <Button 
+                      className="bg-red-600 hover:bg-red-700 cursor-pointer">
+                        Logout
+                      </Button>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                      <AlertDialogHeader>
+                        <AlertDialogTitle>
+                            Are you sure you want to logout ?
+                        </AlertDialogTitle>
+                        <AlertDialogDescription>
+                            This action cannot be undone. You will be logged out and will have to login again.
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogCancel>
+                          Cancel
+                        </AlertDialogCancel>
+                        <AlertDialogAction onClick={handleLogout} className="bg-teal-600 hover:bg-teal-700" >
+                          Continue
+                        </AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
           : <Button className="bg-white text-teal-600 font-semibold hover:bg-gray-100 transition">
             <Link href="/auth/login">Login</Link>
           </Button>}
@@ -70,16 +112,43 @@ const NavBar = () => {
         <div className="md:hidden bg-teal-500 text-white px-6 pb-6 transition-all duration-300">
           <ul className="flex flex-col gap-4 font-semibold">
             {navLinks.map((link, index) => (
-              <li key={index} className="hover:text-yellow-300 transition">
+              <li key={index} className={`${path === link.href && "text-yellow-300"} transition`}>
                 <Link href={link.href} onClick={() => setMenuOpen(false)}>
                   {link.name}
                 </Link>
               </li>
             ))}
             <li>
-              <Button className="w-full bg-white text-teal-600 font-semibold hover:bg-gray-100 transition cursor-pointer">
+              { token ? 
+                <AlertDialog>
+                  <AlertDialogTrigger asChild>
+                    <Button 
+                    className="bg-red-600 hover:bg-red-700 cursor-pointer">
+                      Logout
+                    </Button>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <AlertDialogTitle>
+                          Are you sure you want to logout ?
+                      </AlertDialogTitle>
+                      <AlertDialogDescription>
+                          This action cannot be undone. You will be logged out and will have to login again.
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>
+                          Cancel
+                      </AlertDialogCancel>
+                      <AlertDialogAction onClick={handleLogout} className="bg-teal-600 hover:bg-teal-700" >
+                          Continue
+                      </AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
+              : <Button className="w-full bg-white text-teal-600 font-semibold hover:bg-gray-100 transition cursor-pointer">
                 <Link href="/auth/login">Login</Link>
-              </Button>
+              </Button>}
             </li>
           </ul>
         </div>

@@ -115,19 +115,25 @@ const HomePage = () => {
             {
               name: "John D.",
               text: "The Everest trek was life-changing! Highly recommend Adventure Trails.",
+              photo:"https://randomuser.me/portraits/men/24.jpg"
             },
             {
               name: "Sarah M.",
               text: "Professional guides and stunning routes. I’ll be back for another trek!",
+              photo:"https://randomuser.me/portraits/women/26.jpg"
             },
             {
               name: "Alex K.",
               text: "Best travel experience ever — everything was perfectly organized.",
+              photo:"https://randomuser.me/portraits/men/28.jpg"
             },
           ].map((review, index) => (
             <Card key={index} className="p-6 rounded-2xl shadow-lg hover:shadow-2xl bg-white border-0">
               <p className="italic mb-4">"{review.text}"</p>
-              <p className="font-semibold text-teal-600">— {review.name}</p>
+              <div className="flex flex-col justify-center items-center gap-2">
+                   <Image src={review.photo} alt="" width={80} height={80} className="rounded-full"/>
+                    <p className="font-semibold text-teal-600">— {review.name}</p>
+              </div>
             </Card>
           ))}
         </div>
