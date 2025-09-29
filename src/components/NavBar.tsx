@@ -37,7 +37,12 @@ const NavBar = () => {
   }
 
   return (
-    <nav className="bg-gray-200 w-full fixed  left-0 z-50  shadow-lg">
+    <header className="w-full fixed top-0 z-50">
+      <div className='flex justify-around items-center bg-teal-600 text-white h-14'>
+         <p className='text-xl'>Adventure Trails</p>
+          <Button className='bg-teal-800 hover:bg-teal-900 w-28 h-full cursor-pointer'>Start Now</Button>
+      </div>
+         <nav className="bg-gray-200   shadow-lg">
       <div className="max-w-6xl mx-auto px-6 flex justify-between items-center h-20">
         {/* Logo */}
         {/* <div className=" text-2xl font-bold cursor-pointer">
@@ -156,6 +161,8 @@ const NavBar = () => {
         </div>
       )}
     </nav>
+    </header>
+   
   );
 };
 
