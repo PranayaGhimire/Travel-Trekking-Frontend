@@ -56,7 +56,7 @@ const HomePage = () => {
           Autoplay({
             delay:2000
           })
-        ]} className="">
+        ]} className="overflow-hidden">
           <CarouselContent>
             {destinations.map((place, index) => (
               <CarouselItem key={index} className="md:basis-1/3 lg:basis-1/4">
