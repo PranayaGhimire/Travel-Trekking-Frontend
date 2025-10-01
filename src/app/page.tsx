@@ -41,8 +41,9 @@ const HomePage = () => {
             Your adventure starts here — unforgettable treks, breathtaking
             views, and lifelong memories.
           </p>
-          <button className="bg-teal-600 hover:bg-teal-700 text-white cursor-pointer px-6 py-3 rounded-lg font-semibold shadow-lg transition">
-            Start Your Journey
+          <button  
+          className="bg-teal-600 hover:bg-teal-700 text-white cursor-pointer px-6 py-3 rounded-lg font-semibold shadow-lg transition">
+            <Link href={`/destinations`}>Start Your Journey</Link>
           </button>
         </div>
       </div>
