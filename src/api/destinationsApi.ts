@@ -40,6 +40,7 @@ export const useUpdateDestination = (id:string) =>
 export const useDeleteDestination = () => 
     useMutation({
         mutationFn: async (id:string) => {
-            const response = await axios.delete(`${baseURL}/destinations/${id}`)
+            const response = await axios.delete(`${baseURL}/destinations/${id}`);
+            return response.data;
         }
     })
