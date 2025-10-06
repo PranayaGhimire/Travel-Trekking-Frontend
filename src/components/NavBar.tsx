@@ -28,7 +28,6 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import Image from "next/image";
-import { IoIosArrowDown } from "react-icons/io";
 import { FaUserCircle } from "react-icons/fa";
 
 const NavBar = () => {
@@ -36,7 +35,6 @@ const NavBar = () => {
 
   const { token, setToken, user, setUser } = useAuth();
   const shortEmail = user?.email.slice(0, 2).toUpperCase();
-  console.log(shortEmail);
 
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => setMenuOpen(!menuOpen);
@@ -60,7 +58,7 @@ const NavBar = () => {
       <div className="flex justify-around items-center bg-teal-600 text-white h-14">
         <p className="text-xl">Adventure Trails</p>
         <Button className="bg-teal-800 hover:bg-teal-900 w-28 h-full cursor-pointer">
-          Start Now
+            <Link href={`/destinations`}>Start Now</Link>
         </Button>
       </div>
       <nav className="bg-gray-200   shadow-lg">

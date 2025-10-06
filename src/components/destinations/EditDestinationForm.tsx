@@ -1,20 +1,25 @@
 'use client'
-import React from "react";
+import React, { useEffect } from "react";
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useForm } from "react-hook-form";
-import { useCreateDestination } from "@/api/destinationsApi";
+import {  useGetDestination, useUpdateDestination } from "@/api/destinationsApi";
 import toast from "react-hot-toast";
 import { ClipLoader } from "react-spinners";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
-const CreateDestinationForm = () => {
+const EditDestinationForm = () => {
     const router = useRouter();
-    const {mutate,isPending} = useCreateDestination();
-    const {register,handleSubmit} = useForm();
+    const {id} = useParams<{id:string}>();
+    const {data:destination} = useGetDestination(id);
+    const {mutate,isPending} = useUpdateDestination();
+    const {register,handleSubmit,reset} = useForm();
     const onSubmit = (data:any) => {
-        mutate(data,{
+        mutate({
+            id,
+            data
+        },{
             onSuccess: (response) => {
                 toast.success(response.message);
                 router.push("/destinations");
@@ -22,6 +27,14 @@ const CreateDestinationForm = () => {
             onError: () => toast.error("Oops! Something went wrong")
         })
     }
+    useEffect(() => {
+        reset({
+           name:destination?.name,
+           location:destination?.location,
+           description:destination?.description,
+           bestSeason:destination?.bestSeason 
+        })
+    },[])
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 bg-white p-5 rounded-lg shadow-xl">
       <div className="flex flex-col md:flex-row gap-3">
@@ -60,4 +73,4 @@ const CreateDestinationForm = () => {
   );
 };
 
-export default CreateDestinationForm;
+export default EditDestinationForm;

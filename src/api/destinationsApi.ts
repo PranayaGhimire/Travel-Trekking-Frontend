@@ -29,9 +29,9 @@ export const useGetDestination = (id:string) =>
         }
     })
 
-export const useUpdateDestination = (id:string) => 
+export const useUpdateDestination = () => 
     useMutation({
-        mutationFn: async (data) => {
+        mutationFn: async ({id,data}:{id:string,data:any}) => {
             const response = await axios.put(`${baseURL}/destinations/${id}`,data);
             return response.data;
         }
