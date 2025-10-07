@@ -78,7 +78,7 @@ const NavBar = () => {
               </li>
             ))}
           </ul>
-          {user && <p className="">Hello, {user?.username}</p>}
+          {user && token && <p className="">Hello, {user?.username}</p>}
           {/* Login Button */}
           <div className="">
             {token ? (

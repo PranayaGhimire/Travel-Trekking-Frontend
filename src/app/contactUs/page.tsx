@@ -8,6 +8,39 @@ import React from "react";
 import { FaLocationDot, FaPhone } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 const ContactUsPage = () => {
+  const FAQS = [
+    {
+      trigger:"What makes your company different from other travel agencies?",
+      content:`We specialize exclusively in adventure travel and trekking. Our
+                guides are certified experts in their regions, our itineraries
+                are designed for immersive experiences, and we maintain a strong
+                commitment to sustainable and responsible tourism. We don't just
+                sell trips; we create unforgettable adventures.`
+    },
+    {
+      trigger:"How far in advance should I book my trek or tour?",
+      content:` We recommend booking at least 3-6 months in advance, especially
+              for popular destinations and peak seasons (like spring and autumn
+              for the Himalayas). This ensures availability for permits,
+              flights, and the best guides. Last-minute bookings are sometimes
+              possible, so please contact us.`
+    },
+    {
+      trigger:"Who will be guiding us on the trek?",
+      content:` You will be led by our experienced, local, and certified guides
+              who are fluent in English and have extensive knowledge of the
+              terrain, culture, and first aid. They are passionate about sharing
+              their homeland with you.`
+    },
+    {
+      trigger:"What are the accommodation and food like?",
+      content:`This depends on the trek. On camping treks, we provide
+              high-quality tents and a dedicated kitchen crew who prepare
+              nutritious and hearty meals. On teahouse/lodge treks, you'll stay
+              in family-run lodges with basic, shared facilities and eat meals
+              from their menus.`
+    }
+  ]
   return (
     <div className="py-20 font-sans text-gray-800">
       {/* Hero Section */}
@@ -107,62 +140,23 @@ const ContactUsPage = () => {
       </div>
       {/* FAQ Section */}
       <div className="max-w-6xl mx-auto px-6 pb-12">
-        <h2 className="text-2xl font-bold mb-4 text-teal-600">FAQ</h2>
+        <h2 className="text-2xl font-bold mb-4 text-teal-600">Frequently Asked Questions (FAQs)</h2>
         <Accordion
           type="single"
           collapsible
-          className="w-full bg-white p-3 rounded-lg"
+          className="w-full bg-white p-3 rounded-lg space-y-2"
           defaultValue="item-1"
         >
-          <AccordionItem value="item-1">
-            <AccordionTrigger >
-              What makes your company different from other travel agencies?
-            </AccordionTrigger>
-            <AccordionContent className="text-balance ">
-              <p>
-                We specialize exclusively in adventure travel and trekking. Our
-                guides are certified experts in their regions, our itineraries
-                are designed for immersive experiences, and we maintain a strong
-                commitment to sustainable and responsible tourism. We don't just
-                sell trips; we create unforgettable adventures.
-              </p>
-            </AccordionContent>
-          </AccordionItem>
-          <AccordionItem value="item-2">
-            <AccordionTrigger>
-              How far in advance should I book my trek or tour?
-            </AccordionTrigger>
-            <AccordionContent className="text-balance">
-              We recommend booking at least 3-6 months in advance, especially
-              for popular destinations and peak seasons (like spring and autumn
-              for the Himalayas). This ensures availability for permits,
-              flights, and the best guides. Last-minute bookings are sometimes
-              possible, so please contact us.
-            </AccordionContent>
-          </AccordionItem>
-          <AccordionItem value="item-3">
-            <AccordionTrigger>
-              Who will be guiding us on the trek?
-            </AccordionTrigger>
-            <AccordionContent className="text-balance">
-              You will be led by our experienced, local, and certified guides
-              who are fluent in English and have extensive knowledge of the
-              terrain, culture, and first aid. They are passionate about sharing
-              their homeland with you.
-            </AccordionContent>
-          </AccordionItem>
-          <AccordionItem value="item-4">
-            <AccordionTrigger>
-              What are the accommodation and food like?
-            </AccordionTrigger>
-            <AccordionContent className="text-balance">
-              This depends on the trek. On camping treks, we provide
-              high-quality tents and a dedicated kitchen crew who prepare
-              nutritious and hearty meals. On teahouse/lodge treks, you'll stay
-              in family-run lodges with basic, shared facilities and eat meals
-              from their menus.
-            </AccordionContent>
-          </AccordionItem>
+          {FAQS.map((FAQ,index) => 
+              <AccordionItem key={index} value={`item-${index+1}`}>
+                  <AccordionTrigger className="bg-teal-200 px-2">
+                      {FAQ.trigger}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-balance">
+                      {FAQ.content}
+                  </AccordionContent>
+              </AccordionItem>
+          )}
         </Accordion>
       </div>
     </div>

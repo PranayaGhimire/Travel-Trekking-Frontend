@@ -5,8 +5,8 @@ const baseURL=process.env.NEXT_PUBLIC_URL
 
 export const useCreateDestination = () =>
     useMutation({
-        mutationFn: async (data) => {
-            const response = await axios.post(`${baseURL}/destinations`,data)
+        mutationFn: async (data:any) => {
+            const response = await axios.post(`${baseURL}/destinations`,data);
             return response.data;
         }
     })

@@ -14,7 +14,13 @@ const CreateDestinationForm = () => {
     const {mutate,isPending} = useCreateDestination();
     const {register,handleSubmit} = useForm();
     const onSubmit = (data:any) => {
-        mutate(data,{
+       const formData = new FormData();
+       formData.append("name",data.name);
+       formData.append("location",data.location);
+       formData.append("description",data.description);
+       formData.append("bestSeason",data.bestSeason);
+       formData.append("image",data.image[0]); 
+        mutate(formData,{
             onSuccess: (response) => {
                 toast.success(response.message);
                 router.push("/destinations");
@@ -51,7 +57,7 @@ const CreateDestinationForm = () => {
       {/* image */}
       <div className=" space-y-2">
         <Label htmlFor="image">Destination Image</Label>
-        <Input type="file" className="" />
+        <Input type="file" {...register("image")} className="" />
       </div>
       <Button disabled={isPending} className="bg-teal-600 hover:bg-teal-700 cursor-pointer">
         {isPending ? <ClipLoader size={20} color="white"/> : "Submit"}
