@@ -47,7 +47,9 @@ const ViewDestinations = () => {
                 <TableCell>{d.location}</TableCell>
                 <TableCell>{d.bestSeason}</TableCell>
                 <TableCell className="flex justify-center space-x-2">
-                    <Button className="bg-gray-500 hover:bg-gray-600 cursor-pointer"> <FaEye />View</Button>
+                    <Button className="bg-gray-500 hover:bg-gray-600 cursor-pointer" asChild> 
+                        <Link href={`/destinations/view/${d._id}`}><FaEye />View</Link>
+                    </Button>
                     <Button className="bg-teal-500 hover:bg-teal-600 cursor-pointer" asChild>
                        <Link href={`/destinations/edit/${d._id}`}><FaRegEdit />Edit</Link> 
                     </Button>

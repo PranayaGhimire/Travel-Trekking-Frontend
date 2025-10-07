@@ -29,12 +29,12 @@ const EditDestinationForm = () => {
     }
     useEffect(() => {
         reset({
-           name:destination?.name,
-           location:destination?.location,
-           description:destination?.description,
-           bestSeason:destination?.bestSeason 
+           name:destination?.data?.name,
+           location:destination?.data?.location,
+           description:destination?.data?.description,
+           bestSeason:destination?.data?.bestSeason 
         })
-    },[])
+    },[reset,destination])
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 bg-white p-5 rounded-lg shadow-xl">
       <div className="flex flex-col md:flex-row gap-3">
