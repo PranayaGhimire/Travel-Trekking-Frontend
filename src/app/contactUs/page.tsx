@@ -112,7 +112,7 @@ const ContactUsPage = () => {
         <Accordion
           type="single"
           collapsible
-          className="w-full bg-white p-3 rounded-lg space-y-2"
+          className="border-l-4 border-l-teal-400 w-full bg-white p-3 rounded-lg space-y-2 shadow-xl"
         >
           {FAQS.map((FAQ,index) => 
               <AccordionItem key={index} value={`item-${index+1}`}>
