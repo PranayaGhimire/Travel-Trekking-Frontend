@@ -75,6 +75,7 @@ const NavBar = () => {
                 } hover:text-teal-500 transition`}
               >
                 <Link href={link.href}>{link.name}</Link>
+                {path === link.href && <p className="mt-1 w-8 border-2 border-teal-600"></p>}
               </li>
             ))}
           </ul>
@@ -158,6 +159,7 @@ const NavBar = () => {
                   <Link href={link.href} onClick={() => setMenuOpen(false)}>
                     {link.name}
                   </Link>
+                  {path === link.href && <p className="mt-1 w-8 border-2 border-teal-600"></p>}
                 </li>
               ))}
             </ul>
