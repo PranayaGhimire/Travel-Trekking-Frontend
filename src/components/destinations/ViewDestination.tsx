@@ -6,6 +6,7 @@ import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader,
 import { Button } from '../ui/button';
 import { ClipLoader } from 'react-spinners';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const ViewDestination = () => {
     const {id} = useParams<{id:string}>();
@@ -20,7 +21,9 @@ const ViewDestination = () => {
             <CardTitle>{destination?.data?.name}</CardTitle>
             <CardDescription>{destination?.data?.description}</CardDescription>
             <CardAction>
-                <Button className='bg-teal-600 hover:bg-teal-700 cursor-pointer'>View Packages</Button>
+                <Button className='bg-teal-600 hover:bg-teal-700 cursor-pointer'>
+                    <Link href={`/packages`}>View Packages</Link>
+                </Button>
             </CardAction>
         </CardHeader>
         <CardContent>
