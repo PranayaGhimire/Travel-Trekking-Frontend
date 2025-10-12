@@ -1,3 +1,4 @@
+import ViewPackages from '@/components/packages/ViewPackages'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import React from 'react'
@@ -9,6 +10,7 @@ const PackagesPage = () => {
         <Button className='bg-teal-600 hover:bg-teal-700 cursor-pointer'>
             <Link href={`/packages/create`}>Create Package</Link>
         </Button>
+        <ViewPackages/>
     </div>
   )
 }

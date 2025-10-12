@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 const baseURL = process.env.NEXT_PUBLIC_URL;
 
@@ -18,3 +18,15 @@ export const useLogin = () =>
         }
     })
     
+export const useGetRefreshToken = () => 
+    useQuery({
+        queryKey:['refreshToken'],
+        queryFn: async () => {
+            const response = await axios.get(`${baseURL}/auth/refresh`,{
+                withCredentials:true
+            });
+            return response.data;
+        },
+        enabled:false,
+        retry:false
+    })

@@ -27,7 +27,7 @@ const LoginForm = () => {
           setUser(response.data);
           router.push("/");
         },
-        onError: (response) => toast.error(response.message)
+        onError: () => toast.error("Oops! Something went wrong")
       });
   }
   return (

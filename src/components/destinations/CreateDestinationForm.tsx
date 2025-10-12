@@ -57,7 +57,7 @@ const CreateDestinationForm = () => {
       {/* image */}
       <div className=" space-y-2">
         <Label htmlFor="image">Destination Image</Label>
-        <Input type="file" {...register("image")} className="" />
+        <Input type="file" {...register("image")} className="p-1 px-2" />
       </div>
       <Button disabled={isPending} className="bg-teal-600 hover:bg-teal-700 cursor-pointer">
         {isPending ? <ClipLoader size={20} color="white"/> : "Submit"}
