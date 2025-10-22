@@ -31,7 +31,7 @@ const ViewPackages = () => {
   return (
     <Table className="bg-white rounded-lg shadow-lg p-2">
       <TableCaption>A list of packages</TableCaption>
-      <TableHeader className="">
+      <TableHeader>
         <TableRow>
           <TableHead>S.N.</TableHead>
           <TableHead>Title</TableHead>
