@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { Button } from "./ui/button";
 import Link from "next/link";
-import { HiMenu, HiX } from "react-icons/hi";
+import { HiMenu } from "react-icons/hi";
 import Cookies from "js-cookie";
 import toast from "react-hot-toast";
 import { useAuth } from "@/context/AuthProvider";
@@ -29,15 +29,20 @@ import {
 } from "./ui/dropdown-menu";
 import Image from "next/image";
 import { FaUserCircle } from "react-icons/fa";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "./ui/sheet";
 
 const NavBar = () => {
   const path = usePathname();
 
   const { token, setToken, user, setUser } = useAuth();
   const shortEmail = user?.email.slice(0, 2).toUpperCase();
-
-  const [menuOpen, setMenuOpen] = useState(false);
-  const toggleMenu = () => setMenuOpen(!menuOpen);
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -58,7 +63,7 @@ const NavBar = () => {
       <div className="flex justify-around items-center bg-gradient-to-l from-yellow-500 to-teal-600 text-white h-14">
         <p className="text-xl">Adventure Trails</p>
         <Button className="bg-teal-800 hover:bg-teal-900 w-28 h-full cursor-pointer">
-            <Link href={`/destinations`}>Start Now</Link>
+          <Link href={`/destinations`}>Start Now</Link>
         </Button>
       </div>
       <nav className="bg-gray-200   shadow-lg">
@@ -75,7 +80,9 @@ const NavBar = () => {
                 } hover:text-teal-500 transition`}
               >
                 <Link href={link.href}>{link.name}</Link>
-                {path === link.href && <p className="mt-1 w-8 border-2 border-teal-600"></p>}
+                {path === link.href && (
+                  <p className="mt-1 w-8 border-2 border-teal-600"></p>
+                )}
               </li>
             ))}
           </ul>
@@ -137,34 +144,41 @@ const NavBar = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <div
-            className="md:hidden  text-3xl cursor-pointer"
-            onClick={toggleMenu}
-          >
-            {menuOpen ? <HiX /> : <HiMenu />}
-          </div>
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button className="bg-teal-500 md:hidden">
+                <HiMenu />
+              </Button>
+            </SheetTrigger>
+            <SheetContent className="w-full">
+              <SheetHeader>
+                <SheetTitle>Adventure Trails</SheetTitle>
+                <SheetDescription>
+                    Click on links below to visit the page.
+                </SheetDescription>
+              </SheetHeader>
+              <div className="md:hidden px-6 py-6 transition-all duration-300">
+                <ul className="flex flex-col gap-4 font-semibold">
+                  {navLinks.map((link, index) => (
+                    <li
+                      key={index}
+                      className={`${
+                        path === link.href && "text-teal-500"
+                      } transition border-b-2  py-2`}
+                    >
+                      <Link href={link.href}>
+                        {link.name}
+                      </Link>
+                      {path === link.href && (
+                        <p className="mt-1 w-8 border-2 border-teal-600"></p>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
-
-        {/* Mobile Menu */}
-        {menuOpen && (
-          <div className="md:hidden px-6 py-6 transition-all duration-300 bg-gray-100">
-            <ul className="flex flex-col gap-4 font-semibold">
-              {navLinks.map((link, index) => (
-                <li
-                  key={index}
-                  className={`${
-                    path === link.href && "text-teal-500"
-                  } transition`}
-                >
-                  <Link href={link.href} onClick={() => setMenuOpen(false)}>
-                    {link.name}
-                  </Link>
-                  {path === link.href && <p className="mt-1 w-8 border-2 border-teal-600"></p>}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
       </nav>
     </header>
   );
