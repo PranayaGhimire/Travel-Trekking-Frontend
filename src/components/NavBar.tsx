@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { HiMenu } from "react-icons/hi";
@@ -37,6 +37,8 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "./ui/sheet";
+import {motion} from "motion/react"
+import { FaArrowRightLong } from "react-icons/fa6";
 
 const NavBar = () => {
   const path = usePathname();
@@ -64,6 +66,9 @@ const NavBar = () => {
         <p className="text-xl">Adventure Trails</p>
         <Button className="bg-teal-800 hover:bg-teal-900 w-28 h-full cursor-pointer">
           <Link href={`/destinations`}>Start Now</Link>
+          <motion.div whileHover={{ translateX:5 }}>
+              <FaArrowRightLong />
+          </motion.div>
         </Button>
       </div>
       <nav className="bg-gray-200   shadow-lg">

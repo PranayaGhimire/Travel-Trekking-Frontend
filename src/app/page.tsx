@@ -9,7 +9,6 @@ import React from "react";
 
 const HomePage = () => {
 
-
   return (
     <div className="py-20 font-sans text-gray-800">
       {/* Hero Section */}
