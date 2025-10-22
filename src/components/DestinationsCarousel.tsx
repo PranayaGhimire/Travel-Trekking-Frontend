@@ -18,6 +18,7 @@ const DestinationsCarousel = () => {
     { title: "Langtang Valley", img: "/images/langtang.webp" },
     { title: "Manaslu Trek", img: "/images/manaslu.webp" },
     { title: "Upper Mustang", img: "/images/mustang.webp" },
+    { title: "Tilicho Lake", img: "/images/Tilicho.webp" }
   ];
   return (
     <Carousel

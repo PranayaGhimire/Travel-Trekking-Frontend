@@ -86,17 +86,17 @@ const HomePage = () => {
             {
               name: "John D.",
               text: "The Everest trek was life-changing! Highly recommend Adventure Trails.",
-              photo:"https://randomuser.me/portraits/men/24.jpg"
+              photo:"/images/john.jpg"
             },
             {
               name: "Sarah M.",
               text: "Professional guides and stunning routes. I’ll be back for another trek!",
-              photo:"https://randomuser.me/portraits/women/26.jpg"
+              photo:"/images/sarah.jpg"
             },
             {
               name: "Alex K.",
               text: "Best travel experience ever — everything was perfectly organized.",
-              photo:"https://randomuser.me/portraits/men/28.jpg"
+              photo:"/images/alex.jpg"
             },
           ].map((review, index) => (
             <Card key={index} className="p-6 rounded-2xl shadow-lg hover:shadow-2xl bg-white border-0">
