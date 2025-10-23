@@ -27,7 +27,7 @@ const ViewDestination = () => {
             </CardAction>
         </CardHeader>
         <CardContent>
-            {/* <Image src={destination?.data?.imageUrl} alt='' width={20} height={20}/> */}
+            <Image src={destination?.data?.imageUrl} alt='' width={200} height={200}/>
         </CardContent>
         <CardFooter>{destination?.data?.location}</CardFooter>
       </Card>
