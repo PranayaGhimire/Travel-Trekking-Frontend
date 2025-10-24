@@ -1,12 +1,13 @@
+import { axiosInstance } from "@/utils/axiosInstance";
 import { useMutation, useQuery } from "@tanstack/react-query"
 import axios from "axios"
 
-const baseURL=process.env.NEXT_PUBLIC_URL
+const baseURL=process.env.NEXT_PUBLIC_URL;
 
 export const useCreateDestination = () =>
     useMutation({
         mutationFn: async (data:any) => {
-            const response = await axios.post(`${baseURL}/destinations`,data);
+            const response = await axiosInstance.post(`/destinations`,data);
             return response.data;
         }
     })
@@ -32,7 +33,7 @@ export const useGetDestination = (id:string) =>
 export const useUpdateDestination = () => 
     useMutation({
         mutationFn: async ({id,data}:{id:string,data:any}) => {
-            const response = await axios.put(`${baseURL}/destinations/${id}`,data);
+            const response = await axiosInstance.put(`/destinations/${id}`,data);
             return response.data;
         }
     })
@@ -40,7 +41,7 @@ export const useUpdateDestination = () =>
 export const useDeleteDestination = () => 
     useMutation({
         mutationFn: async (id:string) => {
-            const response = await axios.delete(`${baseURL}/destinations/${id}`);
+            const response = await axiosInstance.delete(`/destinations/${id}`);
             return response.data;
         }
     })

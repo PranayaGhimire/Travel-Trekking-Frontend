@@ -46,6 +46,7 @@ const ViewDestinations = () => {
         queryClient.invalidateQueries({ queryKey: ["destinations"] });
         router.refresh();
       },
+      onError: () => toast.error("Oops! something went wrong")
     });
   };
   if (isLoading)
