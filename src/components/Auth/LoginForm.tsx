@@ -10,6 +10,8 @@ import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import {ClipLoader} from "react-spinners"
 import { useAuth } from "@/context/AuthProvider";
+import { MdEmail } from "react-icons/md";
+import { FaLock } from "react-icons/fa";
 
 const LoginForm = () => {
   const {setToken,setUser} = useAuth();
@@ -35,7 +37,10 @@ const LoginForm = () => {
       <div className="flex flex-col gap-6">
         <div className="grid gap-2">
           <Label htmlFor="email" className="text-teal-700">Email</Label>
-          <Input {...register("email")} id="email" type="email" placeholder="m@example.com" required />
+          <div className="relative">
+              <MdEmail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
+              <Input {...register("email")} id="email" type="email" placeholder="m@example.com" required className="pl-10" />
+          </div>
         </div>
         <div className="grid gap-2">
           <div className="flex items-center">
@@ -47,13 +52,17 @@ const LoginForm = () => {
               Forgot your password?
             </a>
           </div>
-          <Input
+          <div className="relative">
+            <FaLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
+            <Input
             {...register("password")}
             id="password"
             type="password"
             placeholder="Enter password"
             required
+            className="pl-10"
           />
+          </div>
         </div>
          <Button disabled={isPending} type="submit" className="w-full bg-teal-500 hover:bg-teal-600 text-white cursor-pointer ">
             {isPending ?
