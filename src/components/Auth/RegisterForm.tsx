@@ -18,7 +18,8 @@ const RegisterForm = () => {
       onSuccess: () => {
         toast.success("User registered successfully");
         router.push("/auth/login")
-      }
+      },
+      onError: () => toast.error("Oops! something went wrong") 
     })
   };
   return (
