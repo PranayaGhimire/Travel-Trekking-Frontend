@@ -18,7 +18,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "./ui/alert-dialog";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -41,6 +41,7 @@ import {motion} from "motion/react"
 import { FaArrowRightLong } from "react-icons/fa6";
 
 const NavBar = () => {
+  const router = useRouter();
   const path = usePathname();
 
   const { token, setToken, user, setUser } = useAuth();
@@ -58,6 +59,7 @@ const NavBar = () => {
     localStorage.removeItem("user");
     setUser(null);
     toast.success("User logged out successfully");
+    router.push("/auth/login");
   };
 
   return (
