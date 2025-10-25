@@ -15,12 +15,13 @@ const HomePage = () => {
       <div
         className="relative h-[80vh] flex items-center justify-center text-center text-white"
         style={{
-          backgroundImage: "url('/images/hero-trekking.jpg')",
+          backgroundImage: `url('/images/everest.webp')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       >
-        <div className="absolute inset-0 bg-teal-800 bg-opacity-50"></div>
+        <div className="absolute inset-0 backdrop-blur-xs bg-black/40"></div>
+        
         <div className="relative z-10 max-w-2xl px-4">
           <h1 className="text-5xl font-bold mb-4">
             Explore the Majestic Himalayas

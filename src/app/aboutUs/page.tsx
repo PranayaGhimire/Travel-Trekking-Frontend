@@ -6,15 +6,15 @@ const AboutUsPage = () => {
     <div className="py-20 font-sans text-gray-800">
       {/* Hero Section */}
       <div
-        className="relative h-[60vh] flex items-center justify-center text-center text-white"
+        className="relative h-[80vh] flex items-center justify-center text-center text-white"
         style={{
-          backgroundImage: `url('/images/mountainImage.webp)`, 
+          backgroundImage: `url('/images/Tilicho.webp')`, 
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       >
         {/* Overlay */}
-        <div className="absolute inset-0 bg-teal-800 bg-opacity-50"></div>
+     <div className="absolute inset-0 backdrop-blur-xs bg-black/40"></div>
 
         {/* Hero Content */}
         <div className="relative z-10 max-w-2xl px-4">

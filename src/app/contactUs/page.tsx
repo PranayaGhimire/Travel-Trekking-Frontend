@@ -13,15 +13,14 @@ const ContactUsPage = () => {
     <div className="py-20 font-sans text-gray-800">
       {/* Hero Section */}
       <div
-        className="relative h-[60vh] flex items-center justify-center text-center text-white"
+        className="relative h-[80vh] flex items-center justify-center text-center text-white"
         style={{
-          height: "40vh",
-          backgroundImage: "url('/images/contact-hero.jpg')", // ✅ Replace with your image
-          backgroundSize: "cover",
+          backgroundImage: "url('/images/langtang.webp')", 
+          backgroundSize:"cover",
           backgroundPosition: "center",
         }}
       >
-        <div className="absolute inset-0 bg-teal-800 bg-opacity-50"></div>
+        <div className="absolute inset-0 backdrop-blur-xs bg-black/40"></div>
         <div className="relative z-10">
           <h1 className="text-4xl font-bold">Contact Us</h1>
           <p className="mt-2 text-lg">
