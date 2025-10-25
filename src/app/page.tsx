@@ -118,7 +118,7 @@ const HomePage = () => {
       </div>
 
       {/* Call to Action */}
-      <div className="bg-teal-600 py-12 text-center text-white">
+      <div className="bg-gradient-to-tr from-teal-600 to-lime-600 py-12 text-center text-white">
         <h2 className="text-3xl font-bold mb-4">
           Ready to Begin Your Adventure?
         </h2>
