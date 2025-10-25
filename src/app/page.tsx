@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { FaStar } from "react-icons/fa";
 
 
 const HomePage = () => {
@@ -85,22 +86,28 @@ const HomePage = () => {
           {[
             {
               name: "John D.",
+              rating:2,
               text: "The Everest trek was life-changing! Highly recommend Adventure Trails.",
               photo:"/images/john.jpg"
             },
             {
               name: "Sarah M.",
+              rating:4,
               text: "Professional guides and stunning routes. I’ll be back for another trek!",
               photo:"/images/sarah.jpg"
             },
             {
               name: "Alex K.",
+              rating:3,
               text: "Best travel experience ever — everything was perfectly organized.",
               photo:"/images/alex.jpg"
             },
           ].map((review, index) => (
             <Card key={index} className="p-6 rounded-2xl shadow-lg hover:shadow-2xl bg-white border-0">
               <p className="italic mb-4">"{review.text}"</p>
+              <div className="flex gap-2 justify-center">
+                {Array.from({length:review.rating}, (_,i) => <FaStar key={i} color="teal"/> )}
+              </div>
               <div className="flex flex-col justify-center items-center gap-2">
                    <Image src={review.photo} alt="" width={80} height={80} className="rounded-full"/>
                     <p className="font-semibold text-teal-600">— {review.name}</p>
