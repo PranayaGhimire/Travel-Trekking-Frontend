@@ -40,7 +40,7 @@ const ViewDestination = () => {
           <CardDescription>{destination?.data?.description}</CardDescription>
           <CardAction>
             <Button className="bg-teal-600 hover:bg-teal-700 cursor-pointer">
-              <Link href={`/packages`}>View Packages</Link>
+              <Link href={`/packages?destination=${destination?.data?._id}`}>View Packages</Link>
             </Button>
           </CardAction>
         </CardHeader>
