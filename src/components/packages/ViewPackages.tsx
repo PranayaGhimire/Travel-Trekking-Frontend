@@ -101,11 +101,15 @@ const ViewPackages = () => {
                   <TableCell>{pkg.duration}</TableCell>
                   <TableCell>{pkg.itinerary}</TableCell>
                   <TableCell className="flex justify-center gap-2">
-                    <Button className="bg-gray-600 hover:bg-gray-700 cursor-pointer">
-                      View
+                    <Button asChild className="bg-gray-600 hover:bg-gray-700 cursor-pointer">
+                        <Link href={`/packages/view/${pkg._id}`}>
+                            View
+                        </Link>
                     </Button>
                     <Button className="bg-teal-600 hover:bg-teal-700 cursor-pointer">
-                      Edit
+                        <Link href={`/packages/edit/${pkg._id}`}>
+                            Edit
+                        </Link>
                     </Button>
                     <Button
                       onClick={() => handleDeletePackage(pkg._id)}

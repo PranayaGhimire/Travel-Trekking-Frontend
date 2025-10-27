@@ -1,25 +1,18 @@
-"use client";
-import { useGetDestination } from "@/api/destinationsApi";
-import { useParams } from "next/navigation";
+'use client'
 import React from "react";
-import {
-  Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "../ui/card";
-import { Button } from "../ui/button";
-import Image from "next/image";
-import Link from "next/link";
+import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card";
+import { useParams } from "next/navigation";
+import { useGetPackage } from "@/api/packagesApi";
 import { Skeleton } from "../ui/skeleton";
+import { Button } from "../ui/button";
+import Link from "next/link";
+import Image from "next/image";
 
-const ViewDestination = () => {
+const ViewPackage = () => {
   const { id } = useParams<{ id: string }>();
-  const { data: destination, isLoading } = useGetDestination(id);
-
+  const { data: pkg, isLoading } = useGetPackage(id);
+  console.log(pkg);
+  
   if (isLoading)
     return (
       <div className="flex items-center space-x-4">
@@ -34,26 +27,28 @@ const ViewDestination = () => {
     <div>
       <Card className="border-l-4 border-l-teal-600">
         <CardHeader>
-          <CardTitle>{destination?.data?.name}</CardTitle>
-          <CardDescription>{destination?.data?.description}</CardDescription>
+          <CardTitle>{pkg?.data?.title}</CardTitle>
+          <CardDescription>Rs. {pkg?.data?.price}</CardDescription>
           <CardAction>
             <Button className="bg-teal-600 hover:bg-teal-700 cursor-pointer">
-              <Link href={`/packages?destination=${destination?.data?._id}`}>View Packages</Link>
+              <Link href={`/?destination=${pkg?.data?._id}`}>
+                Book Now
+              </Link>
             </Button>
           </CardAction>
         </CardHeader>
         <CardContent>
-          <Image
-            src={destination?.data?.imageUrl}
+          {/* <Image
+            src={pkg?.data?.imageUrl}
             alt=""
             width={200}
             height={200}
-          />
+          /> */}
         </CardContent>
-        <CardFooter>{destination?.data?.location}</CardFooter>
+        <CardFooter>{pkg?.data?.difficulty}</CardFooter>
       </Card>
     </div>
   );
 };
 
-export default ViewDestination;
+export default ViewPackage;
