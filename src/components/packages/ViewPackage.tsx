@@ -31,7 +31,7 @@ const ViewPackage = () => {
           <CardDescription>Rs. {pkg?.data?.price}</CardDescription>
           <CardAction>
             <Button className="bg-teal-600 hover:bg-teal-700 cursor-pointer">
-              <Link href={`/?destination=${pkg?.data?._id}`}>
+              <Link href={`/bookings/?package=${pkg?.data?._id}`}>
                 Book Now
               </Link>
             </Button>
