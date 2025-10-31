@@ -17,7 +17,7 @@ const RegisterPage = () => {
 
   return (
     <div className="flex justify-center items-center py-40">
-      <Card className="bg-white w-[95%] md:w-full max-w-sm border-0 shadow-lg">
+      <Card className="bg-white w-[95%] md:w-full max-w-sm border-0 border-t-4 border-t-teal-600 shadow-lg">
         <CardHeader>
           <CardTitle className="text-xl text-teal-700">Register your account</CardTitle>
           <CardDescription className="text-teal-700">
