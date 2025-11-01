@@ -7,8 +7,10 @@ import { Skeleton } from "../ui/skeleton";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import Image from "next/image";
+import { useAuth } from "@/context/AuthProvider";
 
 const ViewPackage = () => {
+  const {user} = useAuth();
   const { id } = useParams<{ id: string }>();
   const { data: pkg, isLoading } = useGetPackage(id);
   console.log(pkg);
@@ -31,9 +33,13 @@ const ViewPackage = () => {
           <CardDescription>Rs. {pkg?.data?.price}</CardDescription>
           <CardAction>
             <Button className="bg-teal-600 hover:bg-teal-700 cursor-pointer">
-              <Link href={`/bookings/?package=${pkg?.data?._id}`}>
+             {user?.role === "user" ?  <Link href={`/bookings/create?package=${pkg?.data?._id}`}>
                 Book Now
+              </Link> : 
+              <Link href={`/bookings`}>
+                View Bookings
               </Link>
+              }
             </Button>
           </CardAction>
         </CardHeader>
