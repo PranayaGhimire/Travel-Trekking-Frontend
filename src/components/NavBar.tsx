@@ -64,7 +64,7 @@ const NavBar = () => {
 
   return (
     <header className="w-full fixed top-0 z-50">
-      <div className="flex justify-around items-center bg-gradient-to-tl from-lime-600 to-teal-600 text-white h-14">
+      <div className="flex justify-around items-center bg-gradient-to-tl from-lime-600 to-teal-600 text-white h-15">
         <p className="text-xl">Adventure Trails</p>
         <Button className="bg-teal-800 hover:bg-teal-900 w-28 h-full cursor-pointer">
           <Link href={`/destinations`}>Start Now</Link>
