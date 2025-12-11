@@ -15,8 +15,10 @@ import { useAuth } from "@/context/AuthProvider";
 import toast from "react-hot-toast";
 import { useQueryClient } from "@tanstack/react-query";
 import { Skeleton } from "../ui/skeleton";
+import { useInitiatePayment } from "@/api/paymentApi";
 
 const ViewBookings = () => {
+  const {mutate:initiatePayment} = useInitiatePayment();
   const queryClient = useQueryClient();
   const { user } = useAuth();
   const { data: bookings, isLoading } = useGetBookings();
@@ -31,6 +33,19 @@ const ViewBookings = () => {
     });
   };
   console.log(bookings);
+  const handleInitiatePayment = (bookingId:string,amount:number,packageName:string) => {
+    initiatePayment({
+      bookingId,amount,packageName
+    },{
+      onSuccess: (response) => {
+        toast.success("Payment Initated Successfully")
+        if(response.payment_url){
+            window.location.href=response.payment_url
+        }
+      },
+      onError: () => toast.error("Oops! something went wrong")
+    })
+  }
 
   return (
     <div className="space-y-5">
@@ -70,7 +85,7 @@ const ViewBookings = () => {
                     package: { title: string };
                     bookingDate: string;
                     status: string;
-                    amount: string;
+                    amount: number;
                     paymentStatus: string;
                   },
                   index: number
@@ -101,7 +116,8 @@ const ViewBookings = () => {
                         >
                           Delete
                         </Button>
-                      </div> : <Button className="bg-teal-600 hover:bg-teal-700 cursor-pointer">Pay With Khalti</Button>}
+                      </div> : <Button onClick={() => handleInitiatePayment(booking?._id,booking?.amount,booking?.package?.title)} 
+                      className="bg-teal-700 hover:bg-teal-800 cursor-pointer">Pay With Khalti</Button>}
                     </TableCell>
                   </TableRow>
                 )
