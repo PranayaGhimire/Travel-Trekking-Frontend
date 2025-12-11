@@ -15,7 +15,7 @@ export const useInitiatePayment = () =>
 
 export const useVerifyPayment = () => 
     useMutation({
-        mutationFn: async ({pidx,bookingId}:{pidx:string,bookingId:string}) => {
+        mutationFn: async ({pidx,bookingId}:{pidx:string | null,bookingId:string | null}) => {
             const response = await axios.post(`${baseURL}/payment/khalti/verify`,{
                 pidx,bookingId
             });
